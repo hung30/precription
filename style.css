@@ -1,0 +1,159 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
+  background-color: rgb(0, 179, 179);
+  height: 50px;
+  color: white;
+  position: relative;
+}
+
+header a {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+nav {
+  background-color: whitesmoke;
+  display: flex;
+
+  justify-content: space-between;
+  height: 40px;
+}
+
+.nav-left-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 700px;
+}
+
+.nav-left-content a {
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-left-content a:hover {
+  background-color: aquamarine;
+}
+
+.nav-right-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.nav-right-content img {
+  width: 20px;
+  height: 20px;
+}
+
+.content {
+  min-height: 300px;
+  text-align: center;
+}
+
+.content table {
+  margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.new-patient-button {
+  text-align: left;
+}
+
+.new-patient-button a {
+  padding: 10px;
+  margin-left: 20px;
+  background-color: rgb(9, 255, 0);
+  border-radius: 5px;
+}
+
+tr {
+  height: 40px;
+}
+
+.th {
+  border-bottom: 1px solid black;
+}
+.td {
+  border-bottom: 1px solid gray;
+}
+
+.a_sua {
+  text-align: center;
+  display: inline-block;
+  background-color: rgb(240, 212, 0);
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  line-height: 30px;
+}
+
+.a_xoa {
+  color: white;
+  text-align: center;
+  display: inline-block;
+  background-color: red;
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  line-height: 30px;
+}
+
+footer {
+  display: flex;
+  background-color: rgb(0, 179, 179);
+  height: 50px;
+  color: white;
+  justify-content: end;
+  align-items: end;
+}
+
+/* css file edit_patient.php */
+.edit-patient-form {
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form {
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+}
+
+.f {
+  display: flex;
+  justify-content: space-between;
+}
+
+.f label {
+  width: 35%;
+}
+.form-input {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px 0 5px 0;
+}
+
+.button-form {
+  width: 50%;
+  cursor: pointer;
+}
+
+/* css new_patient.php */
+.new-patient-form {
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
