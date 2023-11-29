@@ -57,7 +57,7 @@
           echo "<td>" . $row['doctorName'] . "</td>";
           echo "<td>" . strstr($row['dayStart'], ' ', true) . "</td>";
           echo "<td>" . strstr($row['dayEnd'], ' ', true) . "</td>";
-          echo "<td><a href='./prescription-detail/new_prescription_detail.php?prescriptionId=" . $row['prescriptionId'] . "' class='a_sua'>Kê đơn</a> <a href='./prescription/delete_prescription.php?prescriptionId=" . $row['prescriptionId'] . "' class='a_xoa'>Xóa</a></td>";
+          echo "<td><a href='./prescription-detail/new_prescription_detail.php?prescriptionId=" . $row['prescriptionId'] . "' class='a_kedon'>Kê đơn</a> <a href='./prescription/edit_prescription.php?prescriptionId=" . $row['prescriptionId'] . "' class='a_sua'>Sửa</a> <a href='./prescription/delete_prescription.php?prescriptionId=" . $row['prescriptionId'] . "' class='a_xoa'>Xóa</a></td>";
           echo "</tr>";
         }
       } else {

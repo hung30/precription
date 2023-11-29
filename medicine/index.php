@@ -26,6 +26,15 @@
   </nav>
   <div class="content">
     <h2>Thông tin thuốc</h2>
+    <div class="searchForm">
+      <form method="post" class="searchForm">
+        <input type="hidden" name="form_type" value="form2">
+        <input type="text" class="searchBox-input" name="search" placeholder="Tìm kiếm theo tên thuốc">
+        <button type="submit" class="searchBox-button">
+          <img src="../img/search-icon.svg" alt="search-icon">
+        </button>
+      </form>
+    </div>
     <div class="new-patient-button">
       <a href="./new_medicine.php">Thêm thuốc</a>
     </div>
@@ -41,23 +50,48 @@
       </tr>
       <?php
       require_once '../connection/connect.php';
-      $sql = "SELECT * from medicine
-        order by medicineId";
-      $result = mysqli_query($conn, $sql);
-      if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-          echo "<tr class='td'>";
-          echo "<td><strong>" . $row['medicineId'] . "</strong></td>";
-          echo "<td>" . $row['medicineName'] . "</td>";
-          echo "<td>" . $row['doseMin'] . "</td>";
-          echo "<td>" . $row['doseMax'] . "</td>";
-          echo "<td>" . $row['Frequence'] . "</td>";
-          echo "<td>" . $row['Unit'] . "</td>";
-          echo "<td><a href='./edit_medicine.php?medicineId=" . $row['medicineId'] . "' class='a_sua'>Sửa</a>  <a href='./delete_medicine.php?medicineId=" . $row['medicineId'] . "' class='a_xoa'>Xóa</a></td>";
-          echo "</tr>";
+      $check = false;
+      if (isset($_POST['form_type'])) {
+        $check = true;
+        $searchName = $_POST['search'];
+        if ($check) {
+          $sql = "SELECT * from medicine WHERE medicineName like '%$searchName%'";
+          $result = mysqli_query($conn, $sql);
+          if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+              echo "<tr class='td'>";
+              echo "<td><strong>" . $row['medicineId'] . "</strong></td>";
+              echo "<td>" . $row['medicineName'] . "</td>";
+              echo "<td>" . $row['doseMin'] . "</td>";
+              echo "<td>" . $row['doseMax'] . "</td>";
+              echo "<td>" . $row['Frequence'] . "</td>";
+              echo "<td>" . $row['Unit'] . "</td>";
+              echo "<td><a href='./edit_medicine.php?medicineId=" . $row['medicineId'] . "' class='a_sua'>Sửa</a>  <a href='./delete_medicine.php?medicineId=" . $row['medicineId'] . "' class='a_xoa'>Xóa</a></td>";
+              echo "</tr>";
+            }
+          } else {
+            echo "<tr><td colspan='5'>Không có dữ liệu bạn đã nhập</td></tr>";
+          }
         }
       } else {
-        echo "<tr><td colspan='5'>Không có dữ liệu</td></tr>";
+        $sql = "SELECT * from medicine
+        order by medicineId";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr class='td'>";
+            echo "<td><strong>" . $row['medicineId'] . "</strong></td>";
+            echo "<td>" . $row['medicineName'] . "</td>";
+            echo "<td>" . $row['doseMin'] . "</td>";
+            echo "<td>" . $row['doseMax'] . "</td>";
+            echo "<td>" . $row['Frequence'] . "</td>";
+            echo "<td>" . $row['Unit'] . "</td>";
+            echo "<td><a href='./edit_medicine.php?medicineId=" . $row['medicineId'] . "' class='a_sua'>Sửa</a>  <a href='./delete_medicine.php?medicineId=" . $row['medicineId'] . "' class='a_xoa'>Xóa</a></td>";
+            echo "</tr>";
+          }
+        } else {
+          echo "<tr><td colspan='5'>Không có dữ liệu</td></tr>";
+        }
       }
       mysqli_close($conn);
       ?>

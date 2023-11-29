@@ -35,6 +35,7 @@
         <th>Liều dùng một lần(viên)</th>
         <th>Số lần dùng trong ngày</th>
         <th>Số ngày uống</th>
+        <th>Hành động</th>
       </tr>
       <?php
       require_once '../connection/connect.php';
