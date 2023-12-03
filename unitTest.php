@@ -14,13 +14,16 @@ function checkDose($conn, $medicine, $dose_only, $dose_day, $day)
       $dose_one_day = ($dose_day_check <= $frequency);
       $dose_all = ($doseMin < $dose_all_check && $doseMax > $dose_all_check);
       if (!$dose_one_day) {
-        echo '<script>alert("Bạn nhập liều dùng  trong 1 ngày: ' . $dose_all_check . 'viên là không hợp lý vì liều dùng tối đa trong một ngày là ' . $frequency . 'viên");</script>';
+        echo '<script>alert("Bạn nhập liều dùng  trong 1 ngày: ' . $dose_day_check . ' viên là không hợp lý vì liều dùng tối đa trong một ngày là ' . $frequency . 'viên");</script>';
         echo '<script>window.history.back();</script>';
         return false;
-      } else if (!$dose_all) {
-        echo '<script>alert("Tổng liều dùng của bạn không hợp lý");</script>';
+      } else if ($dose_all_check < $doseMin) {
+        echo '<script>alert("Tổng liều dùng của bạn nhập:' . $dose_all_check . ' nhỏ hơn liều dùng tối thiểu:' . $doseMin . '");</script>';
         echo '<script>window.history.back();</script>';
         return false;
+      } else if ($dose_all_check > $doseMax) {
+        echo '<script>alert("Tổng liều dùng của bạn nhập:' . $dose_all_check . ' lớn hơn liều dùng tối đa:' . $doseMax . '");</script>';
+        echo '<script>window.history.back();</script>';
       }
     }
     return true;
@@ -40,13 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dosageIsValid = checkDose($conn, $medicine, $dose_only, $dose_day, $day);
 
     if ($dosageIsValid) {
-      $sql = "INSERT INTO prescription_detail (prescriptionId, medicineId, doseOnly, doseDay, frequency) VALUES ('$prescription_id', '$medicine', '$dose_only', '$dose_day, '$day')";
+      $sql = "INSERT INTO prescription_detail (prescriptionId, medicineId, doseOnly, doseDay, frequency) VALUES ('$prescription_id', '$medicine', '$dose_only', '$dose_day', '$day')";
       $result = mysqli_query($conn, $sql);
 
       if ($result) {
+        echo '<script>alert("Thông tin kê đơn đã được lưu thành công.");';
+        echo 'setTimeout(function() { window.location.href = "./prescription-detail/index.php"; }, 500);</script>';
         mysqli_close($conn);
-        echo '<script>alert("Dữ liệu thuốc đã được lưu thành công.");</script>';
-        echo '<script>window.history.back();</script>';
         exit();
       } else {
         echo '<script>alert("Có lỗi xảy ra khi lưu dữ liệu thuốc.");</script>';
