@@ -50,11 +50,29 @@ nav {
   justify-content: space-between;
   align-items: center;
   margin-right: 20px;
+  position: relative;
+  cursor: pointer;
 }
 
 .nav-right-content img {
   width: 20px;
   height: 20px;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  margin-top: 80px;
+  background-color: rgb(163, 161, 161);
+}
+
+.navbutton {
+  padding: 3px;
+  border: 1px solid gray;
+}
+
+.nav-right-content.active .dropdown {
+  display: block;
 }
 
 .content {
@@ -69,12 +87,15 @@ nav {
 }
 
 .new-patient-button {
+  display: flex;
+  justify-content: space-between;
   text-align: left;
+  padding: 10px;
+  margin-left: 20px;
 }
 
 .new-patient-button a {
   padding: 10px;
-  margin-left: 20px;
   background-color: rgb(9, 255, 0);
   border-radius: 5px;
 }
@@ -175,7 +196,7 @@ footer {
 }
 
 .searchBox-input {
-  padding: 10px;
+  padding: 3px 10px 3px 10px;
   /* border: none; */
   border-radius: 4px 0 0 4px;
   font-size: 16px;
@@ -185,7 +206,7 @@ footer {
   background-color: #007bff;
   border: none;
   border-radius: 0 4px 4px 0;
-  padding: 10px;
+  padding: 3px 10px 3px 10px;
   cursor: pointer;
   color: #fff;
   font-size: 16px;

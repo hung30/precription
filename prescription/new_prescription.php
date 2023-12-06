@@ -3,7 +3,6 @@ require_once '../connection/connect.php';
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
   $patientId = $_POST['patient'];
   $dayStart = str_replace('T', ' ', $_POST['dayStart']);
-  echo $dayStart;
   $dayEnd = str_replace('T', ' ', $_POST['dayEnd']);
   $doctorId = $_POST['doctor'];
   $sql = "INSERT INTO prescription(doctorId, patientId, dayStart, dayEnd) VALUES ($doctorId, $patientId, '$dayStart', '$dayEnd')";

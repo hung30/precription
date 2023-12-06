@@ -20,23 +20,29 @@
       <a href="../prescription-detail/index.php">Thông tin kê đơn</a>
     </div>
     <div class="nav-right-content">
-      <div>Xin chào</div>
-      <img src="../img/expand_more.svg" alt="menu">
+      <div style="display: flex;">
+        <div>Xin chào</div>
+        <img src="../img/expand_more.svg" alt="menu">
+      </div>
+      <div class="dropdown">
+        <div class="navbutton"><a href="#">Đăng nhập</a></div>
+        <div class="navbutton"><a href="#">Đăng ký</a></div>
+      </div>
     </div>
   </nav>
   <div class="content">
     <h2>Thông tin thuốc</h2>
-    <div class="searchForm">
-      <form method="post" class="searchForm">
-        <input type="hidden" name="form_type" value="form2">
-        <input type="text" class="searchBox-input" name="search" placeholder="Tìm kiếm theo tên thuốc">
-        <button type="submit" class="searchBox-button">
-          <img src="../img/search-icon.svg" alt="search-icon">
-        </button>
-      </form>
-    </div>
     <div class="new-patient-button">
       <a href="./new_medicine.php">Thêm thuốc</a>
+      <div class="searchForm">
+        <form method="post" class="searchForm">
+          <input type="hidden" name="form_type" value="form2">
+          <input type="text" class="searchBox-input" name="search" placeholder="Tìm kiếm theo tên thuốc">
+          <button type="submit" class="searchBox-button">
+            <img src="../img/search-icon.svg" alt="search-icon">
+          </button>
+        </form>
+      </div>
     </div>
     <table>
       <tr class="th">
@@ -58,9 +64,11 @@
           $sql = "SELECT * from medicine WHERE medicineName like '%$searchName%'";
           $result = mysqli_query($conn, $sql);
           if (mysqli_num_rows($result) > 0) {
+            $count = 0;
             while ($row = mysqli_fetch_assoc($result)) {
+              $count++;
               echo "<tr class='td'>";
-              echo "<td><strong>" . $row['medicineId'] . "</strong></td>";
+              echo "<td><strong>" . $count . "</strong></td>";
               echo "<td>" . $row['medicineName'] . "</td>";
               echo "<td>" . $row['doseMin'] . "</td>";
               echo "<td>" . $row['doseMax'] . "</td>";
@@ -78,9 +86,11 @@
         order by medicineId";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {
+          $count = 0;
           while ($row = mysqli_fetch_assoc($result)) {
+            $count++;
             echo "<tr class='td'>";
-            echo "<td><strong>" . $row['medicineId'] . "</strong></td>";
+            echo "<td><strong>" . $count . "</strong></td>";
             echo "<td>" . $row['medicineName'] . "</td>";
             echo "<td>" . $row['doseMin'] . "</td>";
             echo "<td>" . $row['doseMax'] . "</td>";
@@ -100,6 +110,7 @@
   <footer>
     Design by: Nguyễn Đình Hưng
   </footer>
+  <script src="../script.js"></script>
 </body>
 
 </html>

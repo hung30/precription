@@ -1,30 +1,5 @@
 <?php
 require_once '../connection/connect.php';
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//   if (isset($_POST['form_type'])) {
-//     $formType = $_POST['form_type'];
-
-//     if ($formType === 'form1') {
-//       $check = false;
-//       $name = $_POST['name'];
-//       $gender = $_POST['gender'];
-//       $phone = $_POST['phone'];
-
-//       $sql = "INSERT INTO patient(patientName, gender, phone) VALUES ('$name', '$gender', '$phone')";
-//       if ($conn->query($sql) === TRUE) {
-//         mysqli_close($conn);
-//         echo '<script>alert("Dữ liệu bệnh nhân đã được lưu thành công.");';
-//         echo 'setTimeout(function() { window.location.href = "./new_patient.php"; }, 500);</script>';
-//         exit();
-//       } else {
-//         echo "Lỗi: " . $patient_sql . "<br>" . $conn->error;
-//       }
-//     } elseif ($formType === 'form2') {
-//       $check = true;
-//       $searchName = $_POST['search'];
-//     }
-//   }
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,8 +23,14 @@ require_once '../connection/connect.php';
       <a href="../prescription-detail/index.php">Thông tin kê đơn</a>
     </div>
     <div class="nav-right-content">
-      <div>Xin chào</div>
-      <img src="../img/expand_more.svg" alt="menu">
+      <div style="display: flex;">
+        <div>Xin chào</div>
+        <img src="../img/expand_more.svg" alt="menu">
+      </div>
+      <div class="dropdown">
+        <div class="navbutton"><a href="#">Đăng nhập</a></div>
+        <div class="navbutton"><a href="#">Đăng ký</a></div>
+      </div>
     </div>
   </nav>
   <div class="new-patient-form">
@@ -98,12 +79,14 @@ require_once '../connection/connect.php';
         $check = true;
         $searchName = $_POST['search'];
         if ($check) {
-          $sql = "SELECT * from patient WHERE patientName like '%$searchName%'";
+          $sql = "SELECT * from patient WHERE patientName like '%$searchName%' OR phone like '%$searchName%'";
           $result = mysqli_query($conn, $sql);
           if (mysqli_num_rows($result) > 0) {
+            $count = 0;
             while ($row = mysqli_fetch_assoc($result)) {
+              $count++;
               echo "<tr class='td'>";
-              echo "<td><strong>" . $row['patientId'] . "</strong></td>";
+              echo "<td><strong>" . $count . "</strong></td>";
               echo "<td>" . $row['patientName'] . "</td>";
               echo "<td>" . $row['gender'] . "</td>";
               echo "<td>" . $row['phone'] . "</td>";
@@ -118,9 +101,11 @@ require_once '../connection/connect.php';
         $sql = "SELECT * FROM patient order by patientId";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {
+          $count = 0;
           while ($row = mysqli_fetch_assoc($result)) {
+            $count++;
             echo "<tr class='td'>";
-            echo "<td><strong>" . $row['patientId'] . "</strong></td>";
+            echo "<td><strong>" . $count . "</strong></td>";
             echo "<td>" . $row['patientName'] . "</td>";
             echo "<td>" . $row['gender'] . "</td>";
             echo "<td>" . $row['phone'] . "</td>";
@@ -139,6 +124,7 @@ require_once '../connection/connect.php';
   <footer>
     Design by: Nguyễn Đình Hưng
   </footer>
+  <script src="../script.js"></script>
 </body>
 
 </html>
