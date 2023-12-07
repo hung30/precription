@@ -9,13 +9,13 @@ Nguyễn Chánh Hoàng(15%) -->
 
 ## Thành viên
 
-| STT | Tên thành viên      | Tỉ lệ đóng góp(%) |
-| :—–:| :—————————————————-:| :——————————————–: |
-| 1   | Nguyễn Đình Hưng(C) | 30%               |
-| 2   | Nguyễn Văn Lâm      | 20%               |
-| 3   | Nguyễn Đức Vinh     | 15%               |
-| 4   | Nguyễn Quốc Huy     | 20%               |
-| 5   | Nguyễn Chánh Hoàng  | 15%               |
+| STT | Tên thành viên      | Tỉ lệ đóng góp(%) |  
+| :—–:| :—————————————————-:| :——————————————–: |  
+| 1   | Nguyễn Đình Hưng(C) | 30%               |  
+| 2   | Nguyễn Văn Lâm      | 20%               |  
+| 3   | Nguyễn Đức Vinh     | 15%               |  
+| 4   | Nguyễn Quốc Huy     | 20%               |  
+| 5   | Nguyễn Chánh Hoàng  | 15%               |  
 
 ## Link web demo sản phẩm
 
